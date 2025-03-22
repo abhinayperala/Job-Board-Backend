@@ -80,5 +80,5 @@ This is a backend API for a **Job Board Platform**, allowing users to **register
 
 ### 👨‍💻 Author
 **Abhinay Reddy Perala**  
-Feel free to contribute or reach out for improvements! 🚀
+
 
