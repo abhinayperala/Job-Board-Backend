@@ -6,11 +6,11 @@ const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const http = require("http");
 const { Server } = require("socket.io");
-const connectDB = require("./config/db");
+const connectDB = require("./src/config/db");
 
 
-const authRoutes = require("./routes/authRoutes");
-const jobRoutes = require("./routes/jobRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const jobRoutes = require("./src/routes/jobRoutes");
 
 
 const app = express();
