@@ -2,10 +2,12 @@ const Job = require("../models/Job");
 
 exports.createJob = async (req, res) => {
     try {
-        if (req.user.role !== "company") return res.status(403).json({ message: "Unauthorized" });
+        if (req.user.role !== "company") {
+            return res.status(403).json({ message: "Unauthorized" });
+        }
 
         const job = await Job.create({ ...req.body, company: req.user.id });
-        res.status(201).json(job);
+        res.status(201).json({ message: "Job created successfully", job });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
@@ -14,7 +16,7 @@ exports.createJob = async (req, res) => {
 exports.getJobs = async (req, res) => {
     try {
         const jobs = await Job.find().populate("company", "name");
-        res.json(jobs);
+        res.status(200).json(jobs);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -23,17 +25,25 @@ exports.getJobs = async (req, res) => {
 exports.applyForJob = async (req, res) => {
     try {
         const job = await Job.findById(req.params.id);
-        if (!job) return res.status(404).json({ message: "Job not found" });
-
-        if (job.applicants.includes(req.user._id)) {
-            return res.status(400).json({ message: "Already applied for this job" });
+        if (!job) {
+            return res.status(404).json({ message: "Job not found" });
         }
 
-        job.applicants.push(req.user._id);
+       
+        if (req.user.role === "company") {
+            return res.status(403).json({ message: "Companies cannot apply for jobs" });
+        }
+
+       
+        if (job.applicants.includes(req.user.id)) {
+            return res.status(400).json({ message: "You have already applied for this job" });
+        }
+
+        job.applicants.push(req.user.id);
         await job.save();
 
-        res.status(200).json({ message: "Application submitted successfully" });
+        res.status(200).json({ message: "Application submitted successfully", job });
     } catch (err) {
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error", error: err.message });
     }
 };
