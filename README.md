@@ -60,11 +60,11 @@ This is a backend API for a **Job Board Platform**, allowing users to **register
    node server.js
    ```
 5. **Test the API with Postman**
-   - **Register** → `POST /api/auth/register`
-   - **Login** → `POST /api/auth/login`
-   - **Create Job** → `POST /api/jobs` (Requires authentication)
-   - **Get Jobs** → `GET /api/jobs`
-   - **Apply for a Job** → `POST /api/jobs/:id/apply` (Requires authentication)
+   - **Register** → `POST https://job-board-backend-eodc.onrender.com/api/auth/register`
+   - **Login** → `POST https://job-board-backend-eodc.onrender.com/api/auth/login`
+   - **Create Job** → `POST https://job-board-backend-eodc.onrender.com/api/jobs` (Requires authentication which means that you need to be registered as company instead of job_seeker)
+   - **Get Jobs** → `GET https://job-board-backend-eodc.onrender.com/api/jobs`
+   - **Apply for a Job** → `POST https://job-board-backend-eodc.onrender.com/api/jobs/:id/apply` (Requires authentication, need to be a job_seeker)
 
 ---
 
