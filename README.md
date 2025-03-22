@@ -12,7 +12,7 @@ This is a backend API for a **Job Board Platform**, allowing users to **register
 - **Apply for Jobs**: Users can apply for available jobs.
 - **MongoDB Database**: Stores users, jobs, and applications.
 - **Deployment on Render**: Available at [Job Board API](https://job-board-backend-eodc.onrender.com)
-- **NOTE : Render web-service automatically goes to sleep due to inactivity because it is on a free tier
+- **NOTE** : Render web-service automatically goes to sleep due to inactivity because it is on a free tier
 ---
 
 ## ❌ What’s Missing?
